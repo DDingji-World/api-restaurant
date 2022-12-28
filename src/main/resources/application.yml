@@ -7,9 +7,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
-    defer-datasource-initialization: true
-    show-sql: true
     generate-ddl: true
+    show-sql: true
+    defer-datasource-initialization: true
   h2:
     console:
       enabled: true
