@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "restaurant")
@@ -19,5 +21,8 @@ public class Restaurant {
     private String name;
     @Embedded
     private Place place;
+
+    private List<RestaurantCategory> categories;
+    private List<RestaurantTag> tags;
 
 }
