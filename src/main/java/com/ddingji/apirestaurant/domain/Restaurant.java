@@ -21,11 +21,9 @@ public class Restaurant {
     private String name;
     @Embedded
     private Place place;
-    @OneToMany
-    @JoinTable(name = "restaurant_category")
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
     private List<RestaurantCategory> categories;
-    @OneToMany
-    @JoinTable(name = "restaurant_tag")
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
     private List<RestaurantTag> tags;
 
 }
