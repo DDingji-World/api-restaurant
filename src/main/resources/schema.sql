@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS `restaurant`;
+DROP TABLE IF EXISTS `restaurant` cascade ;
 CREATE TABLE `restaurant` (
       `res_id` int NOT NULL,
       `name` varchar(80) NOT NULL,
@@ -8,21 +8,21 @@ CREATE TABLE `restaurant` (
       PRIMARY KEY (`res_id`)
 );
 
-DROP TABLE IF EXISTS `category`;
+DROP TABLE IF EXISTS `category` cascade;
 CREATE TABLE `category` (
     `category_id` int NOT NULL,
     `name` varchar(80) NOT NULL,
     PRIMARY KEY (`category_id`)
 );
 
-DROP TABLE IF EXISTS `tag`;
+DROP TABLE IF EXISTS `tag` cascade;
 CREATE TABLE `tag` (
    `tag_id` int NOT NULL,
    `name` varchar(80) NOT NULL,
    PRIMARY KEY (`tag_id`)
 );
 
-DROP TABLE IF EXISTS `restaurant_category`;
+DROP TABLE IF EXISTS `restaurant_category` cascade;
 CREATE TABLE `restaurant_category` (
    `res_id` int NOT NULL,
    `category_id` int NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE `restaurant_category` (
    FOREIGN KEY (`res_id`) REFERENCES `restaurant` (`res_id`)
 );
 
-DROP TABLE IF EXISTS `restaurant_tag`;
+DROP TABLE IF EXISTS `restaurant_tag` cascade;
 CREATE TABLE `restaurant_tag` (
   `res_id` int NOT NULL,
   `tag_id` int NOT NULL,
