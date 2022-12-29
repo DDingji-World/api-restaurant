@@ -21,8 +21,11 @@ public class Restaurant {
     private String name;
     @Embedded
     private Place place;
-
+    @OneToMany
+    @JoinTable(name = "restaurant_category")
     private List<RestaurantCategory> categories;
+    @OneToMany
+    @JoinTable(name = "restaurant_tag")
     private List<RestaurantTag> tags;
 
 }
