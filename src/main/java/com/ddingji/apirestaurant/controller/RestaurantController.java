@@ -1,4 +1,4 @@
-package com.ddingji.apirestaurant.conroller;
+package com.ddingji.apirestaurant.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
