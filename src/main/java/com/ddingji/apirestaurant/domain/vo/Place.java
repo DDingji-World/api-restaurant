@@ -12,4 +12,11 @@ public class Place {
     private String url;
     @Embedded
     private Location location;
+
+    public String getLocationX(){
+        return location.getX();
+    }
+    public String getLocationY(){
+        return location.getY();
+    }
 }
