@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional
 @SpringBootTest
 class RestaurantRepositoryTest {
 
@@ -18,7 +19,7 @@ class RestaurantRepositoryTest {
     @Transactional
     public void findAllRestaurant() {
         List<Restaurant> restaurants = restaurantRepository.findAll();
-//        System.out.println(restaurants);
+        System.out.println(restaurants);
     }
 
     @Test
@@ -26,6 +27,20 @@ class RestaurantRepositoryTest {
     void findRestaurantById() {
         Restaurant restaurant = restaurantRepository.findById(1L).orElseThrow();
         System.out.println(restaurant.getCategories().get(0).getCategory());
+
     }
+
+    @Test @Transactional
+    void findAllRestaurantsByCategory () throws Exception{
+        //given
+        List<Restaurant> list = restaurantRepository.findRestaurantsByCategoryName("한식");
+
+
+        for (Restaurant restaurant : list) {
+            System.out.println(list);
+        }
+
+    }
+
 
 }
