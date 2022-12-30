@@ -8,6 +8,6 @@ public class RandomHolderImpl implements RandomHolder{
 
     @Override
     public int getRandomNumber(int bound) {
-        return random.nextInt(bound);
+        return Math.max(random.nextInt(bound), 0);
     }
 }
