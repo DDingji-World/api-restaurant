@@ -29,7 +29,7 @@ public class RestaurantController {
     }
     
     @GetMapping("/restaurantList/all")
-    public ResponseEntity<Map<String, Object>> getRestaurantListByCategory() {
+    public ResponseEntity<Map<String, Object>> getRestaurantList() {
     	List<RestaurantListResponse> response = restaurantService.getRestaurantList();
     	Map<String, Object> result = new HashMap<>();
     	result.put("data", response);
