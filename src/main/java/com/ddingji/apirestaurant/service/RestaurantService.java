@@ -1,20 +1,12 @@
 package com.ddingji.apirestaurant.service;
 
-import java.util.List;
+import com.ddingji.apirestaurant.controller.dto.RestaurantResponse;
+import com.ddingji.apirestaurant.domain.CategoryType;
 
-import com.ddingji.apirestaurant.controller.dto.RandomRestaurantResponse;
-import com.ddingji.apirestaurant.controller.dto.RestaurantListResponse;
+import java.util.List;
 
 public interface RestaurantService {
 
-	List<RestaurantListResponse> getRestaurantListByCategory(String name);
-
-	RandomRestaurantResponse selectRandomRestaurantByCategory(String name);
-
-	RandomRestaurantResponse selectRandomRestaurant();
-
-	List<RestaurantListResponse> getRestaurantList();
-
-
+	List<RestaurantResponse> getRestaurants(CategoryType categoryType);
 
 }
