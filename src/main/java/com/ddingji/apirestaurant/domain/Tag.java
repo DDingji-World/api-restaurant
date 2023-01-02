@@ -20,7 +20,7 @@ public class Tag {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "tag_id")
-	private int id;
+	private Long id;
 	private String name;
 
 }
