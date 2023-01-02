@@ -1,54 +1,56 @@
 package com.ddingji.apirestaurant.service;
 
-import com.ddingji.apirestaurant.controller.dto.RandomRestaurantResponse;
-import com.ddingji.apirestaurant.controller.dto.RestaurantListResponse;
+import com.ddingji.apirestaurant.controller.dto.RestaurantResponse;
+import com.ddingji.apirestaurant.domain.CategoryType;
 import com.ddingji.apirestaurant.domain.Restaurant;
 import com.ddingji.apirestaurant.respository.RestaurantRepository;
-import com.ddingji.apirestaurant.utils.RandomHolder;
-
-import java.util.ArrayList;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class RestaurantServiceImpl implements RestaurantService {
 
 	private final RestaurantRepository restaurantRepository;
-	private final RandomHolder randomHolder;
 
+	/**
+	 * 레스토랑 리스트 리턴
+	 * @param categoryType 카테고리 타입
+	 * @return 레스토랑 리스트
+	 */
 	@Override
-	public List<RestaurantListResponse> getRestaurantListByCategory(String name) {
-		List<Restaurant> restaurantList = restaurantRepository.findRestaurantsByCategoryName(name);
-		List<RestaurantListResponse> restaurantDtoList = new ArrayList<RestaurantListResponse>();
-		for(Restaurant restaurant: restaurantList) {
-			restaurantDtoList.add(RestaurantListResponse.create(restaurant));
-		}
-		return restaurantDtoList;
-
+	public List<RestaurantResponse> getRestaurants(CategoryType categoryType) {
+		return categoryType==null ?
+				getRestaurantList() :
+				getRestaurantListByCategory(categoryType);
 	}
 
-	@Override
-	public List<RestaurantListResponse> getRestaurantList() {
+	/**
+	 * 전체 레스토랑 리스트 리턴
+	 * @return 레스토랑 리스트
+	 */
+	private List<RestaurantResponse> getRestaurantList() {
 		List<Restaurant> restaurantList = restaurantRepository.findAllRestaurants();
-		List<RestaurantListResponse> restaurantDtoList = new ArrayList<RestaurantListResponse>();
-		for(Restaurant restaurant: restaurantList) {
-			restaurantDtoList.add(RestaurantListResponse.create(restaurant));
-		}
-		return restaurantDtoList;
+		Collections.shuffle(restaurantList);
+		return restaurantList.stream()
+				.map(RestaurantResponse::create)
+				.toList();
 	}
 
-	@Override
-	public RandomRestaurantResponse selectRandomRestaurantByCategory(String name) {
-		List<Restaurant> all = restaurantRepository.findRestaurantsByCategoryName(name);
-		return RandomRestaurantResponse.create(all.get(randomHolder.getRandomNumber(all.size())));
-	}
-
-	@Override
-	public RandomRestaurantResponse selectRandomRestaurant() {
-		List<Restaurant> all = restaurantRepository.findAllRestaurants();
-		return RandomRestaurantResponse.create(all.get(randomHolder.getRandomNumber(all.size())));
+	/**
+	 * 카테고리별 레스토랑 리스트 리턴
+	 * @param categoryType 카테고리 타입
+	 * @return 레스토랑 리스트
+	 */
+	private List<RestaurantResponse> getRestaurantListByCategory(CategoryType categoryType) {
+		List<Restaurant> restaurantList = restaurantRepository.findRestaurantsByCategoryName(categoryType.getCategoryNameKor());
+		Collections.shuffle(restaurantList);
+		return restaurantList.stream()
+				.map(RestaurantResponse::create)
+				.toList();
 	}
 
 }
