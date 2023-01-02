@@ -2,7 +2,6 @@ package com.ddingji.apirestaurant.domain;
 
 public enum CategoryType {
 
-	ALL("", ""),
 	FLOUR_BASED("flourbased","분식"),
 	JAPANESE("japanese","일식"),
 	WESTERN_ASIAN("westernasian","양식/아시안"),
@@ -22,9 +21,6 @@ public enum CategoryType {
 	}
 
 	public static CategoryType ofType(String source) {
-		if(source == null) {
-			return CategoryType.ALL;
-		}
 		for(CategoryType type : CategoryType.values()) {
 			if(type.categoryNameEng.equals(source)) {
 				return type;
