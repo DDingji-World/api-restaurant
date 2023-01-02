@@ -19,7 +19,7 @@ public class getRestaurantListTest {
 	@Test
 	@Transactional
 	void getRestaurantsWhenCategoryIsAll() {
-		List<RestaurantResponse> restaurants = restaurantService.getRestaurants(CategoryType.ALL);
+		List<RestaurantResponse> restaurants = restaurantService.getRestaurants(null);
 		restaurants.forEach(System.out::println);
 	}
 
