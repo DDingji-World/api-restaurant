@@ -1,6 +1,5 @@
 package com.ddingji.apirestaurant.domain;
 
-import com.ddingji.apirestaurant.domain.vo.Place;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
