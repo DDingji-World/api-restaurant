@@ -23,8 +23,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 	 */
 	@Override
 	public List<RestaurantResponse> getRestaurants(CategoryType categoryType) {
-		return categoryType==null ?
-				getRestaurantList() :
+		return categoryType == null ?
+				getRestaurantListAll() :
 				getRestaurantListByCategory(categoryType);
 	}
 
@@ -32,7 +32,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	 * 전체 레스토랑 리스트 리턴
 	 * @return 레스토랑 리스트
 	 */
-	private List<RestaurantResponse> getRestaurantList() {
+	private List<RestaurantResponse> getRestaurantListAll() {
 		List<Restaurant> restaurantList = restaurantRepository.findAllRestaurants();
 		Collections.shuffle(restaurantList);
 		return restaurantList.stream()
