@@ -1,4 +1,4 @@
-package com.ddingji.apirestaurant.domain.vo;
+package com.ddingji.apirestaurant.domain;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Embedded;

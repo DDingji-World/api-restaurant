@@ -2,7 +2,7 @@ package com.ddingji.apirestaurant.domain;
 
 public enum CategoryType {
 
-	FLOURBASED("flourbased","분식"),
+	FLOUR_BASED("flourbased","분식"),
 	JAPANESE("japanese","일식"),
 	WESTERN_ASIAN("westernasian","양식/아시안"),
 	MEAT("meat","고기"),
@@ -15,14 +15,18 @@ public enum CategoryType {
 	private String categoryNameKor;
 	
 	CategoryType(String categoryNameEng, String categoryNameKor){this.categoryNameEng = categoryNameEng; this.categoryNameKor = categoryNameKor;}
-	
+
+	public String getCategoryNameKor() {
+		return categoryNameKor;
+	}
+
 	public static CategoryType ofType(String source) {
 		for(CategoryType type : CategoryType.values()) {
 			if(type.categoryNameEng.equals(source)) {
 				return type;
 			}
 		}
-		return null;  //나중에 error 처리 해야함
+		throw new RuntimeException(); // 이후 예외클래스 생성
 	}
 	
 	

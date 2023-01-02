@@ -1,13 +1,13 @@
 package com.ddingji.apirestaurant.service;
 
-import java.util.List;
-
+import com.ddingji.apirestaurant.controller.dto.RestaurantResponse;
+import com.ddingji.apirestaurant.domain.CategoryType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ddingji.apirestaurant.controller.dto.RestaurantListResponse;
+import java.util.List;
 
 @Transactional
 @SpringBootTest
@@ -15,23 +15,19 @@ public class getRestaurantListTest {
 
 	@Autowired
 	private RestaurantService restaurantService;
-	
-	 @Test
-	 @Transactional
-	 public void getRestaurantListByCategory() {
-	    	List<RestaurantListResponse> response = restaurantService.getRestaurantListByCategory("한식");
-	    	for(RestaurantListResponse restaurant : response) {
-	    		System.out.println(restaurant.name());
-	    	}
-	 }
-	 
-	 
-	 @Test
-	 @Transactional
-	 public void getRestaurantList() {
-	    	List<RestaurantListResponse> response = restaurantService.getRestaurantList();
-	    	for(RestaurantListResponse restaurant : response) {
-	    		System.out.println(restaurant.name());
-	    	}
-	 }
+
+	@Test
+	@Transactional
+	void getRestaurantsWhenCategoryIsAll() {
+		List<RestaurantResponse> restaurants = restaurantService.getRestaurants(null);
+		restaurants.forEach(System.out::println);
+	}
+
+
+	@Test
+	@Transactional
+	void getRestaurantsWhenCategoryIsSpecific() {
+		List<RestaurantResponse> restaurants = restaurantService.getRestaurants(CategoryType.KOREAN);
+		restaurants.forEach(System.out::println);
+	}
 }
