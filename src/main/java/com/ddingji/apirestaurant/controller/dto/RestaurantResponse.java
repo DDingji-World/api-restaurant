@@ -6,6 +6,7 @@ import java.util.List;
 
 
 public record RestaurantResponse(
+        @JsonProperty("id") Long id,
         @JsonProperty("name") String name,
         @JsonProperty("x") String x,
         @JsonProperty("y") String y,
@@ -14,9 +15,14 @@ public record RestaurantResponse(
         @JsonProperty("tags") List<TagResponse> tags) {
 
     public static RestaurantResponse create(Restaurant restaurant) {
-        return new RestaurantResponse(restaurant.getName(), restaurant.getPlaceX(),
-                restaurant.getPlaceY(), restaurant.getPlaceUrl(),
+        return new RestaurantResponse(
+                restaurant.getId(),
+                restaurant.getName(),
+                restaurant.getPlaceX(),
+                restaurant.getPlaceY(),
+                restaurant.getPlaceUrl(),
                 restaurant.getCategoriesName().stream().map(CategoryResponse::new).toList(),
-                restaurant.getTagsName().stream().map(TagResponse::new).toList());
+                restaurant.getTagsName().stream().map(TagResponse::new).toList()
+        );
     }
 }
