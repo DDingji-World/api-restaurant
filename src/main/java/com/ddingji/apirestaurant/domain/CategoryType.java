@@ -1,5 +1,7 @@
 package com.ddingji.apirestaurant.domain;
 
+import com.ddingji.apirestaurant.exception.RestaurantCategoryException;
+
 public enum CategoryType {
 
 	FLOUR_BASED("flourbased","분식"),
@@ -14,7 +16,10 @@ public enum CategoryType {
 	private String categoryNameEng;
 	private String categoryNameKor;
 	
-	CategoryType(String categoryNameEng, String categoryNameKor){this.categoryNameEng = categoryNameEng; this.categoryNameKor = categoryNameKor;}
+	CategoryType(String categoryNameEng, String categoryNameKor) {
+		this.categoryNameEng = categoryNameEng;
+		this.categoryNameKor = categoryNameKor;
+	}
 
 	public String getCategoryNameKor() {
 		return categoryNameKor;
@@ -26,7 +31,7 @@ public enum CategoryType {
 				return type;
 			}
 		}
-		throw new RuntimeException(); // 이후 예외클래스 생성
+		throw new RestaurantCategoryException();
 	}
 	
 	
