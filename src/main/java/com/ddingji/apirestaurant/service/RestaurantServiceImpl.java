@@ -3,6 +3,8 @@ package com.ddingji.apirestaurant.service;
 import com.ddingji.apirestaurant.controller.dto.RestaurantResponse;
 import com.ddingji.apirestaurant.domain.CategoryType;
 import com.ddingji.apirestaurant.domain.Restaurant;
+import com.ddingji.apirestaurant.exception.RestaurantCategoryException;
+import com.ddingji.apirestaurant.exception.RestaurantException;
 import com.ddingji.apirestaurant.respository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,7 +36,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 	 */
 	private List<RestaurantResponse> getRestaurantListAll() {
 		List<Restaurant> restaurantList = restaurantRepository.findAllRestaurants();
+		if(restaurantList.isEmpty()) throw new RestaurantException("음식점 데이터가 존재하지 않습니다.");
+
 		Collections.shuffle(restaurantList);
+
 		return restaurantList.stream()
 				.map(RestaurantResponse::create)
 				.toList();
@@ -47,7 +52,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 	 */
 	private List<RestaurantResponse> getRestaurantListByCategory(CategoryType categoryType) {
 		List<Restaurant> restaurantList = restaurantRepository.findRestaurantsByCategoryName(categoryType.getCategoryNameKor());
+		if(restaurantList.isEmpty()) throw new RestaurantCategoryException();
+
 		Collections.shuffle(restaurantList);
+
 		return restaurantList.stream()
 				.map(RestaurantResponse::create)
 				.toList();
