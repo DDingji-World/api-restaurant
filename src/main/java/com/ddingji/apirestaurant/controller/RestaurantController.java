@@ -25,5 +25,6 @@ public class RestaurantController {
     @GetMapping("/restaurant/{id}")
     @ResponseStatus(HttpStatus.OK)
     public RestaurantInfoResponse getRestaurantById(@PathVariable Long id) {
+        return restaurantService.getRestaurantById(id);
     }
 }
