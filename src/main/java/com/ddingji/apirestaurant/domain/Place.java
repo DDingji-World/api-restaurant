@@ -5,10 +5,12 @@ import jakarta.persistence.Embedded;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @Embeddable
 @NoArgsConstructor
-public class Place {
+public class Place implements Serializable {
     private String url;
     @Embedded
     private Location location;

@@ -6,3 +6,6 @@ GET http://localhost:8080/restaurants?category=korean
 
 ### GET 잘못된 카테고리 요청 예외 처리
 GET http://localhost:8080/restaurants?category=invalid
+
+### GET 레스토랑 ID 조회
+GET http://localhost:8080/restaurants/1

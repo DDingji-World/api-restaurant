@@ -4,16 +4,17 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 import org.hibernate.annotations.BatchSize;
+
+import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
 @Table(name = "restaurant")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Restaurant {
+public class Restaurant implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "res_id")

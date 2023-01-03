@@ -12,6 +12,9 @@ spring:
     generate-ddl: true
     show-sql: true
     defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
   h2:
     console:
       enabled: true
@@ -19,7 +22,11 @@ spring:
   sql:
     init:
       encoding: utf-8
+  cache:
+    type: redis
+    redis:
+      cache-null-values: true
   data:
     redis:
-      host: 127.0.0.1
+      host: localhost
       port: 6379
