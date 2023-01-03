@@ -4,30 +4,28 @@ import com.ddingji.apirestaurant.exception.RestaurantCategoryException;
 
 public enum CategoryType {
 
-	FLOUR_BASED("flourbased","분식"),
-	JAPANESE("japanese","일식"),
-	WESTERN_ASIAN("westernasian","양식/아시안"),
-	MEAT("meat","고기"),
-	KOREAN("korean","한식"),
-	CHINESE("chinese","중식"),
-	CAFE_DESSERT("cafedessert","카페/디저트"),
-	CONVENIENCE("convenience","간편식");
+	FLOUR_BASED("분식"),
+	JAPANESE("일식"),
+	WESTERN_ASIAN("양식/아시안"),
+	MEAT("고기"),
+	KOREAN("한식"),
+	CHINESE("중식"),
+	CAFE_DESSERT("카페/디저트"),
+	CONVENIENCE("간편식");
 
-	private String categoryNameEng;
-	private String categoryNameKor;
+	private String categoryName;
 	
-	CategoryType(String categoryNameEng, String categoryNameKor) {
-		this.categoryNameEng = categoryNameEng;
-		this.categoryNameKor = categoryNameKor;
+	CategoryType(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
-	public String getCategoryNameKor() {
-		return categoryNameKor;
+	public String getCategoryName() {
+		return categoryName;
 	}
 
 	public static CategoryType ofType(String source) {
 		for(CategoryType type : CategoryType.values()) {
-			if(type.categoryNameEng.equals(source)) {
+			if(type.categoryName.equals(source)) {
 				return type;
 			}
 		}

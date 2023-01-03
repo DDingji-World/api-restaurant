@@ -52,7 +52,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	 * @return 레스토랑 리스트
 	 */
 	private List<RestaurantResponse> getRestaurantListByCategory(CategoryType categoryType) {
-		List<Restaurant> restaurantList = restaurantRepository.findRestaurantsByCategoryName(categoryType.getCategoryNameKor());
+		List<Restaurant> restaurantList = restaurantRepository.findRestaurantsByCategoryName(categoryType.getCategoryName());
 		if(restaurantList.isEmpty()) throw new RestaurantCategoryException();
 
 		Collections.shuffle(restaurantList);
