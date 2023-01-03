@@ -35,7 +35,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public RestaurantInfoResponse getRestaurantById(Long id) {
         Restaurant restaurant = restaurantRepository.findById(id)
-				.orElseThrow();
+				.orElseThrow(() -> new RestaurantException(RestaurantErrorCode.NOT_FOUND_RESTAURANT_DATA_BY_ID));
 		return RestaurantInfoResponse.create(restaurant);
     }
 
