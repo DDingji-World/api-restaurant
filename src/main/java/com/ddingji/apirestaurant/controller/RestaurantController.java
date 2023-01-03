@@ -22,7 +22,7 @@ public class RestaurantController {
         return restaurantService.getRestaurants(categoryType);
     }
 
-    @GetMapping("/restaurant/{id}")
+    @GetMapping("/restaurants/{id}")
     @ResponseStatus(HttpStatus.OK)
     public RestaurantInfoResponse getRestaurantById(@PathVariable Long id) {
         return restaurantService.getRestaurantById(id);
