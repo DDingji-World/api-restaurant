@@ -1,5 +1,6 @@
 package com.ddingji.apirestaurant.service;
 
+import com.ddingji.apirestaurant.controller.dto.RestaurantInfoResponse;
 import com.ddingji.apirestaurant.controller.dto.RestaurantResponse;
 import com.ddingji.apirestaurant.domain.CategoryType;
 import com.ddingji.apirestaurant.domain.Restaurant;
@@ -31,7 +32,14 @@ public class RestaurantServiceImpl implements RestaurantService {
 				getRestaurantListByCategory(categoryType);
 	}
 
-	/**
+    @Override
+    public RestaurantInfoResponse getRestaurantById(Long id) {
+        Restaurant restaurant = restaurantRepository.findById(id)
+				.orElseThrow(() -> new RestaurantException(RestaurantErrorCode.NOT_FOUND_RESTAURANT_DATA_BY_ID));
+		return RestaurantInfoResponse.create(restaurant);
+    }
+
+    /**
 	 * 전체 레스토랑 리스트 리턴
 	 * @return 레스토랑 리스트
 	 */
