@@ -4,6 +4,8 @@ spring:
     driverClassName: org.h2.Driver
     username: sa
     password:
+    hikari:
+      connection-timeout: 5000 #timeout 5sec.
   jpa:
     hibernate:
       ddl-auto: create-drop
