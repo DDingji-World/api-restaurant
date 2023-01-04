@@ -4,16 +4,17 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 import org.hibernate.annotations.BatchSize;
+
+import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
 @Table(name = "restaurant")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Restaurant {
+public class Restaurant implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "res_id")
@@ -21,10 +22,10 @@ public class Restaurant {
     private String name;
     @Embedded
     private Place place;
-    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private List<RestaurantCategory> categories ;
     @BatchSize(size = 20)
-    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private List<RestaurantTag> tags;
 
     public String getPlaceX(){

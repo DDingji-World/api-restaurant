@@ -1,0 +1,5 @@
+### Docker-Redis 설치 및 redis-cli 접근 스크립트
+
+docker pull redis:latest
+docker run -d -p 6379:6379 --name rest-redis redis:latest
+docker exec -it rest-redis redis-cli

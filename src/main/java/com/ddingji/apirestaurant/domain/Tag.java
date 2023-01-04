@@ -10,13 +10,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @Entity
 @Table(name="tag")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tag {
-
+public class Tag implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "tag_id")
