@@ -32,7 +32,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 				getRestaurantListByCategory(categoryType);
 	}
 
-    @Override
+	/**
+	 * 레스토랑 ID 조회
+	 * @param id 조회할 레스토랑 ID
+	 * @return 레스토랑
+	 */
+	@Override
     public RestaurantInfoResponse getRestaurantById(Long id) {
         Restaurant restaurant = restaurantRepository.findById(id)
 				.orElseThrow(() -> new RestaurantException(RestaurantErrorCode.NOT_FOUND_RESTAURANT_DATA_BY_ID));
@@ -41,7 +46,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     /**
-	 * 전체 레스토랑 리스트 리턴
+	 * 전체 레스토랑 리스트 셔플 리턴
 	 * @return 레스토랑 리스트
 	 */
 	private List<RestaurantResponse> getRestaurantListAll() {
@@ -56,7 +61,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	/**
-	 * 카테고리별 레스토랑 리스트 리턴
+	 * 카테고리별 레스토랑 리스트 셔플 리턴
 	 * @param categoryType 카테고리 타입
 	 * @return 레스토랑 리스트
 	 */
