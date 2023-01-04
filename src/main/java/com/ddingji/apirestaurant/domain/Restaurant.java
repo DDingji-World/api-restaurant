@@ -22,10 +22,10 @@ public class Restaurant implements Serializable {
     private String name;
     @Embedded
     private Place place;
-    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private List<RestaurantCategory> categories ;
     @BatchSize(size = 20)
-    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private List<RestaurantTag> tags;
 
     public String getPlaceX(){
